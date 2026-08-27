@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOESIS PERFUMERÍA | Alta Perfumería de Lujo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for interactive icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cormorant Garamond & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: {
+                            gold: '#D4AF37',
+                            lightGold: '#F4E8C1',
+                            roseGold: '#E0A899',
+                            cream: '#FDFBF7',
+                            softPink: '#F9F1F0',
+                            dark: '#1A1A1A',
+                            charcoal: '#2C2C2C',
+                            marble: '#F5F2EE'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FDFBF7;
+            color: #2C2C2C;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #C5A059 0%, #E6CA65 50%, #AA7C11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .marble-bg {
+            background-color: #F9F1F0;
+            background-image: radial-gradient(#E0A899 0.5px, transparent 0.5px), radial-gradient(#E0A899 0.5px, #FDFBF7 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.1;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E0A899;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+    </style>
+</head>
+<body class="bg-luxury-cream text-luxury-charcoal antialiased selection:bg-luxury-roseGold selection:text-white">
+
+    <!-- Top Notification Bar -->
+    <div class="bg-luxury-dark text-luxury-lightGold text-xs tracking-widest text-center py-2 px-4 uppercase font-sans">
+        Envío cortesía en compras superiores a $1,500 MXN | Experiencia Olfativa Exclusiva
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-luxury-cream/95 backdrop-blur-md border-b border-luxury-roseGold/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-luxury-charcoal focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm uppercase tracking-widest font-medium">
+                <button onclick="switchView('home')" class="nav-link text-luxury-charcoal hover:text-luxury-gold transition-colors pb-1 border-b-2 border-luxury-gold">Inicio</button>
+                <button onclick="switchView('shop')" class="nav-link text-luxury-charcoal hover:text-luxury-gold transition-colors pb-1 border-b-2 border-transparent">Tienda</button>
+                <a href="#bestsellers" onclick="switchView('home'); scrollToSection('bestsellers');" class="nav-link text-luxury-charcoal hover:text-luxury-gold transition-colors pb-1 border-b-2 border-transparent">Best Sellers</a>
+                <button onclick="switchView('shop')" class="nav-link text-luxury-charcoal hover:text-luxury-gold transition-colors pb-1 border-b-2 border-transparent">Catálogo</button>
+                <button onclick="switchView('contact')" class="nav-link text-luxury-charcoal hover:text-luxury-gold transition-colors pb-1 border-b-2 border-transparent">Contacto</button>
+            </nav>
+
+            <!-- Centered Logo -->
+            <div class="flex-shrink-0 cursor-pointer text-center" onclick="switchView('home')">
+                <!-- Logotipo integrado exactamente según la imagen provista -->
+                <div class="inline-block px-3 py-1 bg-gradient-to-br from-luxury-softPink to-luxury-cream border border-luxury-roseGold/30 shadow-sm rounded">
+                    <span class="font-serif text-2xl sm:text-3xl font-bold tracking-widest gold-gradient-text block">NOESIS</span>
+                    <span class="font-sans text-[9px] sm:text-[10px] tracking-[0.3em] text-luxury-charcoal uppercase block -mt-1 font-semibold">PERFUMERÍA</span>
+                </div>
+            </div>
+
+            <!-- Header Action Icons -->
+            <div class="flex items-center space-x-5 text-luxury-charcoal">
+                <button onclick="toggleSearchModal()" class="hover:text-luxury-gold transition-colors relative" title="Buscar">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+                <button onclick="toggleWishlistDrawer()" class="hover:text-luxury-gold transition-colors relative" title="Lista de Deseos">
+                    <i class="fa-regular fa-heart text-lg"></i>
+                    <span id="wishlist-badge" class="absolute -top-2 -right-2 bg-luxury-roseGold text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+                <button onclick="toggleCartDrawer()" class="hover:text-luxury-gold transition-colors relative" title="Carrito">
+                    <i class="fa-bag-shopping fa-regular text-lg"></i>
+                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-luxury-gold text-luxury-dark text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-luxury-cream border-b border-luxury-roseGold/20 px-4 pt-2 pb-6 space-y-3">
+            <button onclick="switchView('home'); toggleMobileMenu();" class="block w-full text-left py-2 uppercase tracking-widest text-sm font-medium border-b border-luxury-softPink">Inicio</button>
+            <button onclick="switchView('shop'); toggleMobileMenu();" class="block w-full text-left py-2 uppercase tracking-widest text-sm font-medium border-b border-luxury-softPink">Tienda</button>
+            <button onclick="switchView('home'); toggleMobileMenu(); setTimeout(() => scrollToSection('bestsellers'), 100);" class="block w-full text-left py-2 uppercase tracking-widest text-sm font-medium border-b border-luxury-softPink">Best Sellers</button>
+            <button onclick="switchView('shop'); toggleMobileMenu();" class="block w-full text-left py-2 uppercase tracking-widest text-sm font-medium border-b border-luxury-softPink">Catálogo</button>
+            <button onclick="switchView('contact'); toggleMobileMenu();" class="block w-full text-left py-2 uppercase tracking-widest text-sm font-medium">Contacto</button>
+        </div>
+    </header>
+
+    <!-- MAIN VIEWS CONTAINER -->
+    <main>
+
+        <!-- ================= VIEW 1: HOME ================= -->
+        <div id="view-home" class="view-section transition-opacity duration-500">
+            
+            <!-- Hero Section -->
+            <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-luxury-softPink/40 via-luxury-cream to-luxury-cream py-16 px-4">
+                <!-- Background ambient decorative shapes representing leaves/shadows and marble -->
+                <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#E0A899_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="absolute -top-20 -left-20 w-96 h-96 bg-luxury-roseGold/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-luxury-lightGold/30 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                    <div class="text-center lg:text-left space-y-6">
+                        <span class="inline-block text-xs uppercase tracking-[0.4em] text-luxury-gold font-semibold bg-luxury-lightGold/40 px-3 py-1 rounded-full border border-luxury-gold/20">
+                            Alta Perfumería Árabe & de Lujo
+                        </span>
+                        <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-luxury-dark leading-none">
+                            La esencia de la <span class="italic gold-gradient-text">elegancia</span> atemporal
+                        </h1>
+                        <p class="text-luxury-charcoal/80 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                            Descubre fragancias icónicas que despiertan emociones profundas y dejan una estela inolvidable. Notas selectas para mentes sofisticadas.
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                            <button onclick="switchView('shop')" class="w-full sm:w-auto px-8 py-4 bg-luxury-dark text-luxury-lightGold uppercase tracking-widest text-xs font-medium rounded-none hover:bg-luxury-gold hover:text-luxury-dark transition-all duration-300 shadow-lg">
+                                EXPLORE AROMA
+                            </button>
+                            <a href="#bestsellers" onclick="scrollToSection('bestsellers')" class="w-full sm:w-auto px-8 py-4 border border-luxury-dark/30 text-luxury-dark uppercase tracking-widest text-xs font-medium rounded-none hover:border-luxury-gold hover:text-luxury-gold transition-all duration-300 text-center">
+                                Ver Colección
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Presentation (Perfume on Marble Platform) -->
+                    <div class="relative flex justify-center">
+                        <div class="relative w-full max-w-md aspect-[4/5] bg-gradient-to-tr from-luxury-softPink/80 to-luxury-cream p-8 rounded-2xl shadow-2xl border border-luxury-roseGold/20 flex flex-col items-center justify-center overflow-hidden group">
+                            <!-- Organic leaf shadow effect -->
+                            <div class="absolute inset-0 bg-blend-multiply opacity-20 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-luxury-charcoal via-transparent to-transparent"></div>
+                            
+                            <!-- Marble Podium element -->
+                            <div class="absolute bottom-10 w-3/4 h-12 bg-gradient-to-r from-luxury-marble via-white to-luxury-marble rounded-xl shadow-inner border border-luxury-roseGold/30 transform perspective-1000 rotate-x-12"></div>
+                            
+                            <!-- Perfume Bottle Mockup Image/Graphic -->
+                            <div class="relative z-10 transform group-hover:scale-105 transition-transform duration-700 ease-out text-center">
+                                <div class="w-48 h-64 sm:w-56 sm:h-72 mx-auto bg-gradient-to-b from-amber-100/60 to-luxury-roseGold/30 backdrop-blur-md rounded-t-full rounded-b-xl shadow-2xl border border-luxury-lightGold/60 flex flex-col items-center justify-center relative p-6">
+                                    <div class="absolute top-4 w-12 h-8 bg-gradient-to-r from-luxury-gold via-amber-200 to-luxury-gold rounded-t-md shadow-md"></div>
+                                    <div class="w-20 h-28 border border-luxury-gold/50 rounded-lg flex flex-col items-center justify-center bg-white/40 shadow-inner mt-4">
+                                        <span class="font-serif text-xs font-bold tracking-widest text-luxury-dark">NOESIS</span>
+                                        <span class="text-[8px] tracking-[0.2em] text-luxury-gold mt-1">L'ELIXIR</span>
+                                    </div>
+                                    <span class="mt-6 font-serif text-sm tracking-widest text-luxury-dark font-semibold">KHAMRAH LATTAFA</span>
+                                    <span class="text-[10px] text-luxury-charcoal/60 tracking-wider">100 ML • EAU DE PARFUM</span>
+                                </div>
+                            </div>
+
+                            <!-- Floating badge -->
+                            <div class="absolute top-6 right-6 bg-luxury-dark text-luxury-lightGold text-[10px] uppercase tracking-widest px-3 py-1 rounded shadow-md">
+                                Edición Exclusiva
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Brand Values Bar -->
+            <section class="bg-luxury-softPink/50 py-12 border-y border-luxury-roseGold/20">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="space-y-2 p-4">
+                        <i class="fa-solid fa-gem text-luxury-gold text-2xl mb-2"></i>
+                        <h3 class="font-serif text-lg font-bold">100% Originales & Garantizados</h3>
+                        <p class="text-xs text-luxury-charcoal/70">Fragancias importadas directamente de casas árabes y de diseñador reconocidas.</p>
+                    </div>
+                    <div class="space-y-2 p-4">
+                        <i class="fa-solid fa-wind text-luxury-gold text-2xl mb-2"></i>
+                        <h3 class="font-serif text-lg font-bold">Estela de Larga Duración</h3>
+                        <p class="text-xs text-luxury-charcoal/70">Concentraciones Eau de Parfum y Extractos con máxima fijación en piel.</p>
+                    </div>
+                    <div class="space-y-2 p-4">
+                        <i class="fa-solid fa-box-open text-luxury-gold text-2xl mb-2"></i>
+                        <h3 class="font-serif text-lg font-bold">Presentación de Lujo</h3>
+                        <p class="text-xs text-luxury-charcoal/70">Empaques impecables con detalles en oro rosa, ideales para coleccionistas y obsequio.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Carousel / Best Sellers Section -->
+            <section id="bestsellers" class="py-20 px-4 max-w-7xl mx-auto">
+                <div class="text-center space-y-3 mb-12">
+                    <span class="text-xs uppercase tracking-[0.3em] text-luxury-gold font-semibold">Selección Exclusiva</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight">Best Sellers & Destacados</h2>
+                    <p class="text-luxury-charcoal/70 max-w-lg mx-auto text-sm">Los aromas más codiciados por nuestros conocedores, disponibles para entrega inmediata.</p>
+                </div>
+
+                <!-- Product Slider / Grid Container -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="home-featured-grid">
+                    <!-- Dynamic insertion via JavaScript -->
+                </div>
+
+                <div class="text-center mt-12">
+                    <button onclick="switchView('shop')" class="px-8 py-3 bg-transparent border border-luxury-dark text-luxury-dark uppercase tracking-widest text-xs font-semibold hover:bg-luxury-dark hover:text-luxury-lightGold transition-all duration-300">
+                        Ver Todo el Catálogo ($)
+                    </button>
+                </div>
+            </section>
+
+        </div>
+
+
+        <!-- ================= VIEW 2: SHOP / CATÁLOGO ================= -->
+        <div id="view-shop" class="view-section hidden transition-opacity duration-500 py-12 px-4 max-w-7xl mx-auto">
+            
+            <div class="text-center space-y-3 mb-12">
+                <span class="text-xs uppercase tracking-[0.3em] text-luxury-gold font-semibold">Colección Completa NOESIS</span>
+                <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight">Tienda & Catálogo Oficial</h1>
+                <p class="text-luxury-charcoal/70 max-w-xl mx-auto text-sm">Explora las notas olfativas estilo Fragrantica. Pasa el cursor sobre los ingredientes para conocer su perfil aromático.</p>
+            </div>
+
+            <!-- Filters & Search Bar inside Shop -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 bg-luxury-softPink/40 p-4 rounded-xl border border-luxury-roseGold/20">
+                <div class="w-full md:w-1/3 relative">
+                    <input type="text" id="shop-search-input" oninput="filterCatalog()" placeholder="Buscar por nombre o marca..." class="w-full bg-luxury-cream border border-luxury-roseGold/40 rounded px-4 py-2 text-sm focus:outline-none focus:border-luxury-gold">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-3 text-luxury-charcoal/40 text-sm"></i>
+                </div>
+                <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-luxury-charcoal font-medium">
+                    <span>Ordenar por:</span>
+                    <select id="shop-sort-select" onchange="filterCatalog()" class="bg-luxury-cream border border-luxury-roseGold/40 rounded px-3 py-2 text-xs focus:outline-none focus:border-luxury-gold">
+                        <option value="default">Recomendados</option>
+                        <option value="price-asc">Precio: Menor a Mayor</option>
+                        <option value="price-desc">Precio: Mayor a Menor</option>
+                        <option value="name">Alfabético (A-Z)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Complete Catalog Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="shop-catalog-grid">
+                <!-- Dynamically populated via JS with Fragrantica style notes -->
+            </div>
+        </div>
+
+
+        <!-- ================= VIEW 3: CONTACTO ================= -->
+        <div id="view-contact" class="view-section hidden transition-opacity duration-500 py-16 px-4 max-w-5xl mx-auto">
+            
+            <div class="text-center space-y-3 mb-12">
+                <span class="text-xs uppercase tracking-[0.3em] text-luxury-gold font-semibold">Atención Personalizada</span>
+                <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight">Contacto & Asesoría Olfativa</h1>
+                <p class="text-luxury-charcoal/70 max-w-md mx-auto text-sm">¿Buscas una recomendación específica o tienes dudas sobre tu pedido? Estamos a tu entera disposición.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-luxury-softPink/30 p-8 sm:p-12 rounded-2xl border border-luxury-roseGold/20 shadow-lg">
+                
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="space-y-2">
+                        <h3 class="font-serif text-2xl font-bold text-luxury-dark">Canales Oficiales</h3>
+                        <p class="text-xs text-luxury-charcoal/70">Comunícate directamente con nuestro equipo de expertos en alta perfumería.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-luxury-gold/20 flex items-center justify-center text-luxury-gold flex-shrink-0 mt-1">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-widest text-luxury-charcoal/60 block font-medium">Teléfono / WhatsApp</span>
+                                <a href="tel:5535164467" class="text-lg font-serif font-bold text-luxury-dark hover:text-luxury-gold transition-colors">55 3516 4467</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-luxury-gold/20 flex items-center justify-center text-luxury-gold flex-shrink-0 mt-1">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-widest text-luxury-charcoal/60 block font-medium">Correo Electrónico</span>
+                                <!-- Enlace interactivo mailto obligatorio -->
+                                <a href="mailto:Abril.y.moncam@icloud.com" class="text-base font-serif font-bold text-luxury-dark hover:text-luxury-gold transition-colors underline">Abril.y.moncam@icloud.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-luxury-gold/20 flex items-center justify-center text-luxury-gold flex-shrink-0 mt-1">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-widest text-luxury-charcoal/60 block font-medium">Ubicación</span>
+                                <span class="text-sm font-medium text-luxury-dark">Estado de México, México</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-luxury-roseGold/20">
+                        <span class="text-xs uppercase tracking-widest text-luxury-charcoal/60 block font-medium mb-3">Síguenos</span>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-9 h-9 rounded-full bg-luxury-dark text-luxury-lightGold flex items-center justify-center hover:bg-luxury-gold hover:text-luxury-dark transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="w-9 h-9 rounded-full bg-luxury-dark text-luxury-lightGold flex items-center justify-center hover:bg-luxury-gold hover:text-luxury-dark transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                            <a href="#" class="w-9 h-9 rounded-full bg-luxury-dark text-luxury-lightGold flex items-center justify-center hover:bg-luxury-gold hover:text-luxury-dark transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                    <div class="space-y-1">
+                        <label class="text-xs uppercase tracking-wider font-semibold text-luxury-charcoal">Nombre Completo</label>
+                        <input type="text" required class="w-full bg-luxury-cream border border-luxury-roseGold/40 rounded px-4 py-3 text-sm focus:outline-none focus:border-luxury-gold" placeholder="Ej. Sofía Mendoza">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs uppercase tracking-wider font-semibold text-luxury-charcoal">Correo Electrónico</label>
+                        <input type="email" required class="w-full bg-luxury-cream border border-luxury-roseGold/40 rounded px-4 py-3 text-sm focus:outline-none focus:border-luxury-gold" placeholder="ejemplo@correo.com">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs uppercase tracking-wider font-semibold text-luxury-charcoal">Mensaje / Consulta de Perfume</label>
+                        <textarea rows="4" required class="w-full bg-luxury-cream border border-luxury-roseGold/40 rounded px-4 py-3 text-sm focus:outline-none focus:border-luxury-gold" placeholder="Escribe tu consulta o fragancia de interés..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-luxury-dark text-luxury-lightGold uppercase tracking-widest text-xs font-semibold rounded hover:bg-luxury-gold hover:text-luxury-dark transition-all duration-300 shadow-md">
+                        Enviar Mensaje
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ================= SLIDE-OVER: WISHLIST DRAWER (ESTANTE DE DESEOS) ================= -->
+    <div id="wishlist-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity" onclick="toggleWishlistDrawer()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-luxury-cream shadow-2xl flex flex-col border-l border-luxury-roseGold/30">
+                <!-- Header -->
+                <div class="p-6 border-b border-luxury-roseGold/20 flex items-center justify-between bg-luxury-softPink/30">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-heart text-luxury-gold"></i>
+                        <h2 class="font-serif text-xl font-bold tracking-wide">Estante de Deseos (Fragrantica Style)</h2>
+                    </div>
+                    <button onclick="toggleWishlistDrawer()" class="text-luxury-charcoal hover:text-luxury-gold">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+                <!-- Body / Items list -->
+                <div id="wishlist-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-luxury-roseGold/10">
+                    <!-- Populated dynamically -->
+                </div>
+                <!-- Footer -->
+                <div class="p-6 border-t border-luxury-roseGold/20 bg-luxury-softPink/20">
+                    <button onclick="addAllWishlistToCart()" class="w-full py-3 bg-luxury-gold text-luxury-dark uppercase tracking-widest text-xs font-bold rounded hover:bg-luxury-dark hover:text-luxury-lightGold transition-all">
+                        Mover Todo al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE-OVER: CART DRAWER ================= -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-luxury-cream shadow-2xl flex flex-col border-l border-luxury-roseGold/30">
+                <!-- Header -->
+                <div class="p-6 border-b border-luxury-roseGold/20 flex items-center justify-between bg-luxury-softPink/30">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-bag-shopping text-luxury-gold"></i>
+                        <h2 class="font-serif text-xl font-bold tracking-wide">Bolsa de Compras</h2>
+                    </div>
+                    <button onclick="toggleCartDrawer()" class="text-luxury-charcoal hover:text-luxury-gold">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+                <!-- Body / Items list -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-luxury-roseGold/10">
+                    <!-- Populated dynamically -->
+                </div>
+                <!-- Footer -->
+                <div class="p-6 border-t border-luxury-roseGold/20 bg-luxury-softPink/20 space-y-4">
+                    <div class="flex justify-between items-center font-serif text-lg font-bold">
+                        <span>Total:</span>
+                        <span id="cart-total-price" class="text-luxury-gold">$0.00 MXN</span>
+                    </div>
+                    <button onclick="checkoutCart()" class="w-full py-4 bg-luxury-dark text-luxury-lightGold uppercase tracking-widest text-xs font-bold rounded hover:bg-luxury-gold hover:text-luxury-dark transition-all shadow-md">
+                        Proceder al Pago Seguro
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SEARCH MODAL ================= -->
+    <div id="search-modal" class="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/50 backdrop-blur-sm hidden">
+        <div class="bg-luxury-cream w-full max-w-2xl rounded-xl shadow-2xl border border-luxury-roseGold/30 p-6 relative space-y-4">
+            <div class="flex justify-between items-center pb-3 border-b border-luxury-roseGold/20">
+                <span class="font-serif text-lg font-bold">Búsqueda Rápida NOESIS</span>
+                <button onclick="toggleSearchModal()" class="text-luxury-charcoal hover:text-luxury-gold"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <input type="text" id="modal-search-input" oninput="liveSearch(this.value)" placeholder="Escribe el nombre de tu perfume favorito (ej. Yara, Khamrah, Asad...)" class="w-full bg-luxury-softPink/40 border border-luxury-roseGold/40 rounded px-4 py-3 text-sm focus:outline-none focus:border-luxury-gold">
+            <div id="search-results-container" class="max-h-80 overflow-y-auto space-y-2">
+                <!-- Results populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-luxury-dark text-luxury-cream py-16 px-4 mt-20 border-t border-luxury-gold/20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div class="space-y-4">
+                <div class="inline-block px-3 py-1 bg-luxury-charcoal border border-luxury-gold/40 rounded">
+                    <span class="font-serif text-2xl font-bold tracking-widest gold-gradient-text block">NOESIS</span>
+                    <span class="font-sans text-[9px] tracking-[0.3em] text-luxury-lightGold uppercase block -mt-1 font-semibold">PERFUMERÍA</span>
+                </div>
+                <p class="text-xs text-luxury-lightGold/70 leading-relaxed">
+                    Elevando el arte de la perfumería fina en México. Fragancias originales con esencia de distinción.
+                </p>
+            </div>
+            <div class="space-y-3">
+                <h4 class="font-serif text-lg font-bold text-luxury-gold uppercase tracking-wider">Enlaces Rápidos</h4>
+                <ul class="space-y-2 text-xs uppercase tracking-widest text-luxury-lightGold/80">
+                    <li><button onclick="switchView('home'); window.scrollTo(0,0);" class="hover:text-luxury-gold transition-colors">Inicio</button></li>
+                    <li><button onclick="switchView('shop'); window.scrollTo(0,0);" class="hover:text-luxury-gold transition-colors">Tienda & Catálogo</button></li>
+                    <li><a href="#bestsellers" onclick="switchView('home'); scrollToSection('bestsellers');" class="hover:text-luxury-gold transition-colors">Best Sellers</a></li>
+                    <li><button onclick="switchView('contact'); window.scrollTo(0,0);" class="hover:text-luxury-gold transition-colors">Contacto</button></li>
+                </ul>
+            </div>
+            <div class="space-y-3">
+                <h4 class="font-serif text-lg font-bold text-luxury-gold uppercase tracking-wider">Contacto Directo</h4>
+                <p class="text-xs text-luxury-lightGold/80">Teléfono: <a href="tel:5535164467" class="underline hover:text-luxury-gold">55 3516 4467</a></p>
+                <p class="text-xs text-luxury-lightGold/80">Correo: <a href="mailto:Abril.y.moncam@icloud.com" class="underline hover:text-luxury-gold">Abril.y.moncam@icloud.com</a></p>
+                <p class="text-xs text-luxury-lightGold/80">Atizapán de Zaragoza, Estado de México.</p>
+            </div>
+            <div class="space-y-3">
+                <h4 class="font-serif text-lg font-bold text-luxury-gold uppercase tracking-wider">Boletín Exclusivo</h4>
+                <p class="text-xs text-luxury-lightGold/70">Suscríbete para recibir lanzamientos de nicho y preventas privadas.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Tu correo..." class="bg-luxury-charcoal border border-luxury-gold/30 rounded-l px-3 py-2 text-xs w-full text-luxury-cream focus:outline-none">
+                    <button onclick="alert('¡Gracias por suscribirte a NOESIS Perfumería!')" class="bg-luxury-gold text-luxury-dark px-4 rounded-r text-xs uppercase font-bold hover:bg-luxury-lightGold transition-colors">Unirme</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-luxury-lightGold/10 text-center text-xs text-luxury-lightGold/50 uppercase tracking-widest">
+            &copy; 2026 NOESIS PERFUMERÍA. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT LOGIC & INTERACTIVITY ================= -->
+    <script>
+        // Catálogo oficial estricto solicitado con precios fijos exactos y estilo Fragrantica (Notas y Acordes)
+        const perfumesCatalog = [
+            {
+                id: 1,
+                name: "Yara Lattafa",
+                volume: "100 ml",
+                price: 550.00,
+                category: "Mujer / Unisex",
+                imageBg: "from-pink-100 to-pink-200",
+                accords: ["Avainillado", "Dulce", "Atalcado", "Frutal", "Tropical"],
+                notes: [
+                    { name: "Orquídea", desc: "Nota floral exótica y delicada con matices empolvados." },
+                    { name: "Heliotropo", desc: "Aroma floral almendrado con un toque dulce y cálido." },
+                    { name: "Frutas Tropicales", desc: "Acorde jugoso y vibrante de salida refrescante." },
+                    { name: "Vainilla", desc: "Dulzor cremoso, profundo y reconfortante." },
+                    { name: "Almizcle", desc: "Fijador sensual que aporta textura limpia y duradera." }
+                ]
+            },
+            {
+                id: 2,
+                name: "Asad Lattafa",
+                volume: "100 ml",
+                price: 500.00,
+                category: "Hombre",
+                imageBg: "from-amber-900/30 to-neutral-800",
+                accords: ["Especiado cálido", "Avainillado", "Amaderado", "Ámbar", "Atalcado"],
+                notes: [
+                    { name: "Pimienta Negra", desc: "Especiado picante y vigoroso de apertura." },
+                    { name: "Tabaco", desc: "Nota profunda, resinosa y de gran distinción varonil." },
+                    { name: "Piña", desc: "Toque frutal sutil que equilibra la oscuridad de las especias." },
+                    { name: "Vainilla y Ámbar", desc: "Base cálida, dulce y envolvente de larga fijación." },
+                    { name: "Pachulí", desc: "Aroma terroso, seco y sofisticado." }
+                ]
+            },
+            {
+                id: 3,
+                name: "Yara Elixir Lattafa",
+                volume: "100 ml",
+                price: 550.00,
+                category: "Mujer",
+                imageBg: "from-pink-300/40 to-rose-400/30",
+                accords: ["Dulce", "Avainillado", "Frutal", "Ambarino", "Floral"],
+                notes: [
+                    { name: "Mandarina", desc: "Cítrico chispeante y luminoso en la salida." },
+                    { name: "Notas Florales", desc: "Bouquet elegante de corazón delicado." },
+                    { name: "Vainilla Gourmand", desc: "Nota dulce almibarada de alta intensidad." },
+                    { name: "Sándalo", desc: "Madera cremosa y suavemente especiada." }
+                ]
+            },
+            {
+                id: 4,
+                name: "Eclaire Lattafa",
+                volume: "100 ml",
+                price: 550.00,
+                category: "Mujer / Unisex",
+                imageBg: "from-amber-100 to-amber-200",
+                accords: ["Avainillado", "Caramelo", "Lactónico", "Dulce", "Atalcado"],
+                notes: [
+                    { name: "Caramelo", desc: "Acorde goloso, rico y profundamente dulce." },
+                    { name: "Leche y Azúcar", desc: "Nota cremosa reconfortante estilo postre fino." },
+                    { name: "Flor Blanca", desc: "Toque limpio que evita que sea empalagoso." },
+                    { name: "Vainilla y Almizcle", desc: "Fondo cálido, suave y persistente en la piel." }
+                ]
+            },
+            {
+                id: 5,
+                name: "Khamrah Lattafa",
+                volume: "100 ml",
+                price: 560.00,
+                category: "Unisex / Lujo",
+                imageBg: "from-amber-700/30 to-amber-900/40",
+                accords: ["Especiado cálido", "Vainilla", "Amaderado", "Dulce", "Canela"],
+                notes: [
+                    { name: "Canela", desc: "Especiado cálido, rico y envolvente." },
+                    { name: "Nuez Moscada", desc: "Toque seco, aromático y penetrante." },
+                    { name: "Dátiles", desc: "Fruta confitada que aporta una dulzura resinosa única." },
+                    { name: "Praliné y Vainilla", desc: "Corazón gourmand ultra lujoso." },
+                    { name: "Hab Tonka y Mirra", desc: "Fondo balsámico, profundo y oscuro." }
+                ]
+            },
+            {
+                id: 6,
+                name: "Club de Nuit Intense Armaf",
+                volume: "105 ml (Mujer)",
+                price: 600.00,
+                category: "Mujer",
+                imageBg: "from-rose-200 to-rose-300",
+                accords: ["Frutal", "Rosa", "Amaderado", "Almizclado", "Cítrico"],
+                notes: [
+                    { name: "Rosa y Geranio", desc: "Acorde floral clásico, romántico y dominante." },
+                    { name: "Azafrán", desc: "Especiado rico, exótico y de alta gama." },
+                    { name: "Pimienta", desc: "Chispa picante en la salida." },
+                    { name: "Pachulí y OUD", desc: "Base amaderada oriental con gran carácter." },
+                    { name: "Vainilla y Ámbar", desc: "Suavidad cálida en el secado final." }
+                ]
+            },
+            {
+                id: 7,
+                name: "Orientica Royal Bleu",
+                volume: "80 ml",
+                price: 670.00,
+                category: "Unisex / Lujo",
+                imageBg: "from-blue-900/30 to-slate-800",
+                accords: ["Amaderado", "Especiado cálido", "Cítrico", "Ambarino", "Aromático"],
+                notes: [
+                    { name: "Bergamota y Pimienta Rosa", desc: "Salida fresca, especiada y vibrante." },
+                    { name: "Ámbar gris", desc: "Nota marina resinosa, elegante y sofisticada." },
+                    { name: "Pachulí y Cedro", desc: "Madera estructurada y limpia." },
+                    { name: "Almizcle", desc: "Fondo aterciopelado de larga duración." }
+                ]
+            },
+            {
+                id: 8,
+                name: "Orientica Amber Rouge",
+                volume: "80 ml",
+                price: 670.00,
+                category: "Unisex / Lujo",
+                imageBg: "from-red-900/30 to-amber-800/30",
+                accords: ["Ámbar", "Amaderado", "Especiado cálido", "Floral", "Atalcado"],
+                notes: [
+                    { name: "Azafrán y Jazmín", desc: "Apertura magnética, opulenta y floral-especiada." },
+                    { name: "Madera de Amberwood", desc: "Corazón resinoso, cálido y envolvente." },
+                    { name: "Ámbar Gris", desc: "Profundidad oceánica y sensualidad en piel." },
+                    { name: "Resina de Abeto y Cedro", desc: "Fondo amaderado balsámico muy elegante." }
+                ]
+            },
+            {
+                id: 9,
+                name: "Orientica Oud Saffron",
+                volume: "80 ml (Luxury Col.)",
+                price: 690.00,
+                category: "Unisex / Colección de Lujo",
+                imageBg: "from-amber-600/30 to-stone-900",
+                accords: ["Oud", "Especiado cálido", "Amaderado", "Atalcado", "Cuero"],
+                notes: [
+                    { name: "Azafrán Oriental", desc: "Espeia lujosa, cálida y ligeramente amarga." },
+                    { name: "Oud (Madera de Agar)", desc: "El oro líquido de la perfumería, profundo e hipnótico." },
+                    { name: "Pachulí", desc: "Aroma terroso que equilibra las maderas pesadas." },
+                    { name: "Almizcle Blanco", desc: "Limpieza y elegancia sutil al secar." }
+                ]
+            },
+            {
+                id: 10,
+                name: "9pm Afnan",
+                volume: "100 ml",
+                price: 500.00,
+                category: "Hombre / Unisex",
+                imageBg: "from-indigo-900/30 to-blue-900/40",
+                accords: ["Vainilla", "Dulce", "Afrutado", "Canela", "Ambarino"],
+                notes: [
+                    { name: "Manzana y Canela", desc: "Salida frutal especiada dulce y adictiva." },
+                    { name: "Flor de Azahar", desc: "Corazón floral fresco y limpio." },
+                    { name: "Vainilla y Haba Tonka", desc: "Base sumamente golosa, juvenil y nocturna." },
+                    { name: "Ámbar y Pachulí", desc: "Fondo varonil de gran estela." }
+                ]
+            },
+            {
+                id: 11,
+                name: "Yara Candy Lattafa",
+                volume: "100 ml",
+                price: 550.00,
+                category: "Mujer",
+                imageBg: "from-pink-400/35 to-rose-300/40",
+                accords: ["Dulce", "Frutal", "Gourmand", "Tropical", "Atalcado"],
+                notes: [
+                    { name: "Caramelo de Frutas", desc: "Apertura vibrante, jugosa y divertida." },
+                    { name: "Grosellas Negras", desc: "Frutal oscuro y chispeante." },
+                    { name: "Vainilla y Almizcle Dulce", desc: "Fondo suave y azucarado." }
+                ]
+            },
+            {
+                id: 12,
+                name: "Odyssey Mandarin Sky Armaf",
+                volume: "100 ml",
+                price: 490.00,
+                category: "Hombre / Unisex",
+                imageBg: "from-orange-500/20 to-amber-700/30",
+                accords: ["Cítrico", "Dulce", "Especiado", "Amaderado", "Avainillado"],
+                notes: [
+                    { name: "Mandarina jugosa", desc: "Cítrico efervescente de gran impacto inicial." },
+                    { name: "Notas Especiadas", desc: "Calidez equilibrada en el corazón." },
+                    { name: "Caramelo y Haba Tonka", desc: "Contraste dulce y adictivo muy moderno." },
+                    { name: "Cedro y Vetiver", desc: "Base seca y elegante." }
+                ]
+            },
+            {
+                id: 13,
+                name: "Fakhar Rose Lattafa",
+                volume: "100 ml",
+                price: 490.00,
+                category: "Mujer",
+                imageBg: "from-pink-200/50 to-rose-200/50",
+                accords: ["Floral", "Tuberosa", "Blanco Floral", "Frutal", "Atalcado"],
+                notes: [
+                    { name: "Frutas y Azucena", desc: "Apertura fresca y luminosa." },
+                    { name: "Tuberosa y Jazmín", desc: "Ramo floral blanco intenso, cremoso y sensual." },
+                    { name: "Vainilla y Sándalo", desc: "Fondo cálido y reconfortante." },
+                    { name: "Almizcle Blanco", desc: "Acabado limpio y sofisticado." }
+                ]
+            }
+        ];
+
+        // App State
+        let cart = [];
+        let wishlist = [];
+
+        // Initialization on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFeaturedHome();
+            renderShopCatalog();
+            updateBadges();
+        });
+
+        // View Router Switcher
+        function switchView(viewName) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`view-${viewName}`).classList.remove('hidden');
+            
+            // Update active nav link indicator
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                btn.classList.remove('border-luxury-gold');
+                btn.classList.add('border-transparent');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToSection(sectionId) {
+            const el = document.getElementById(sectionId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Render Featured on Home
+        function renderFeaturedHome() {
+            const container = document.getElementById('home-featured-grid');
+            // Pick first 4 products for home featured
+            const featured = perfumesCatalog.slice(0, 4);
+            container.innerHTML = featured.map(p => createProductCardHTML(p)).join('');
+        }
+
+        // Render Shop Catalog
+        function renderShopCatalog(filteredList = perfumesCatalog) {
+            const container = document.getElementById('shop-catalog-grid');
+            if (filteredList.length === 0) {
+                container.innerHTML = `<p class="col-span-full text-center text-luxury-charcoal/60 py-12">No se encontraron fragancias con los criterios especificados.</p>`;
+                return;
+            }
+            container.innerHTML = filteredList.map(p => createProductCardHTML(p)).join('');
+        }
+
+        // Product Card HTML Generator with Fragrantica Style Notes & Accords
+        function createProductCardHTML(p) {
+            const isWishlisted = wishlist.some(item => item.id === p.id);
+            const heartClass = isWishlisted ? "fa-solid text-luxury-roseGold" : "fa-regular text-luxury-charcoal";
+
+            // Generate accord badges
+            const accordsHTML = p.accords.map(acc => `<span class="text-[9px] uppercase px-2 py-0.5 bg-luxury-softPink border border-luxury-roseGold/30 rounded text-luxury-charcoal font-medium">${acc}</span>`).join('');
+            
+            // Generate interactive notes with tooltips/hover descriptions
+            const notesHTML = p.notes.map(n => `
+                <div class="relative group/note inline-block cursor-help m-1">
+                    <span class="text-[10px] bg-luxury-cream border border-luxury-gold/40 px-2 py-1 rounded text-luxury-dark font-medium flex items-center gap-1 hover:bg-luxury-gold hover:text-luxury-dark transition-colors">
+                        <i class="fa-solid fa-seedling text-[8px] text-luxury-gold group-hover/note:text-luxury-dark"></i> ${n.name}
+                    </span>
+                    <!-- Hover Popup Description -->
+                    <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-luxury-dark text-luxury-cream text-[10px] rounded shadow-xl opacity-0 group-hover/note:opacity-100 transition-opacity pointer-events-none z-30 text-center font-sans">
+                        <strong>${n.name}:</strong> ${n.desc}
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <div class="bg-gradient-to-b from-luxury-softPink/20 to-luxury-cream rounded-xl p-5 border border-luxury-roseGold/30 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <!-- Top actions -->
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-[10px] uppercase tracking-widest bg-luxury-lightGold/60 text-luxury-dark px-2.5 py-1 rounded-full font-semibold border border-luxury-gold/20">${p.category}</span>
+                            <button onclick="toggleWishlist(${p.id})" class="w-8 h-8 rounded-full bg-luxury-cream flex items-center justify-center shadow hover:scale-110 transition-transform" title="Guardar en Lista de Deseos">
+                                <i class="${heartClass} text-sm"></i>
+                            </button>
+                        </div>
+
+                        <!-- Bottle representation visual -->
+                        <div class="w-full h-48 bg-gradient-to-b ${p.imageBg} rounded-lg flex flex-col items-center justify-center relative mb-4 shadow-inner overflow-hidden group-hover:scale-[1.02] transition-transform">
+                            <div class="w-8 h-5 bg-gradient-to-r from-luxury-gold to-amber-300 rounded-t shadow"></div>
+                            <div class="w-16 h-20 border border-luxury-gold/50 rounded flex flex-col items-center justify-center bg-white/30 backdrop-blur-sm mt-1 p-1">
+                                <span class="font-serif text-[10px] font-bold text-luxury-dark tracking-tighter">NOESIS</span>
+                                <span class="text-[6px] tracking-widest text-luxury-gold uppercase">PARFUM</span>
+                            </div>
+                            <span class="absolute bottom-2 text-[10px] tracking-widest text-luxury-charcoal/70 font-semibold">${p.volume}</span>
+                        </div>
+
+                        <!-- Product Title & Price -->
+                        <h3 class="font-serif text-xl font-bold text-luxury-dark group-hover:text-luxury-gold transition-colors">${p.name}</h3>
+                        <p class="text-luxury-gold font-serif text-lg font-bold mt-1">$${p.price.toFixed(2)} <span class="text-xs font-sans text-luxury-charcoal/60">MXN</span></p>
+
+                        <!-- Fragrantica Style Accords -->
+                        <div class="mt-3 flex flex-wrap gap-1">
+                            ${accordsHTML}
+                        </div>
+
+                        <!-- Fragrantica Style Notes with hover interactive tooltip -->
+                        <div class="mt-4 pt-3 border-t border-luxury-roseGold/20">
+                            <span class="text-[10px] uppercase tracking-widest text-luxury-charcoal/60 block font-semibold mb-1">Pirámide Olfativa (Pasa el cursor):</span>
+                            <div class="flex flex-wrap">
+                                ${notesHTML}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart Button -->
+                    <div class="mt-6 pt-3 border-t border-luxury-roseGold/20">
+                        <button onclick="addToCart(${p.id})" class="w-full py-3 bg-luxury-dark text-luxury-lightGold text-xs uppercase tracking-widest font-medium rounded hover:bg-luxury-gold hover:text-luxury-dark transition-all duration-300 flex items-center justify-center gap-2 shadow">
+                            <i class="fa-solid fa-bag-shopping"></i> Añadir al Carrito
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Filter and Search Shop Catalog
+        function filterCatalog() {
+            const query = document.getElementById('shop-search-input').value.toLowerCase();
+            const sort = document.getElementById('shop-sort-select').value;
+
+            let result = perfumesCatalog.filter(p => 
+                p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query) || p.accords.some(a => a.toLowerCase().includes(query))
+            );
+
+            if (sort === 'price-asc') result.sort((a,b) => a.price - b.price);
+            if (sort === 'price-desc') result.sort((a,b) => b.price - a.price);
+            if (sort === 'name') result.sort((a,b) => a.name.localeCompare(b.name));
+
+            renderShopCatalog(result);
+        }
+
+        // Live Search Modal
+        function toggleSearchModal() {
+            const modal = document.getElementById('search-modal');
+            modal.classList.toggle('hidden');
+            if(!modal.classList.contains('hidden')) {
+                document.getElementById('modal-search-input').focus();
+            }
+        }
+
+        function liveSearch(query) {
+            const container = document.getElementById('search-results-container');
+            if(!query.trim()) {
+                container.innerHTML = '';
+                return;
+            }
+            const matches = perfumesCatalog.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+            if(matches.length === 0) {
+                container.innerHTML = `<p class="text-xs text-luxury-charcoal/60 text-center py-4">No se encontraron resultados.</p>`;
+                return;
+            }
+            container.innerHTML = matches.map(p => `
+                <div onclick="toggleSearchModal(); switchView('shop');" class="flex items-center justify-between p-3 hover:bg-luxury-softPink/50 rounded cursor-pointer transition-colors border-b border-luxury-roseGold/10">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded bg-luxury-roseGold/20 flex items-center justify-center font-serif font-bold text-luxury-dark text-xs">N</div>
+                        <div>
+                            <h4 class="font-serif font-bold text-sm">${p.name}</h4>
+                            <span class="text-[10px] text-luxury-charcoal/60">${p.volume} • ${p.category}</span>
+                        </div>
+                    </div>
+                    <span class="font-serif font-bold text-luxury-gold text-sm">$${p.price.toFixed(2)} MXN</span>
+                </div>
+            `).join('');
+        }
+
+        // Wishlist (Estante de Deseos) Functions
+        function toggleWishlistDrawer() {
+            const drawer = document.getElementById('wishlist-drawer');
+            drawer.classList.toggle('hidden');
+            renderWishlistItems();
+        }
+
+        function toggleWishlist(id) {
+            const product = perfumesCatalog.find(p => p.id === id);
+            const index = wishlist.findIndex(item => item.id === id);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+            } else {
+                wishlist.push(product);
+            }
+            updateBadges();
+            renderFeaturedHome();
+            renderShopCatalog();
+            renderWishlistItems();
+        }
+
+        function renderWishlistItems() {
+            const container = document.getElementById('wishlist-items-container');
+            if (wishlist.length === 0) {
+                container.innerHTML = `<div class="text-center py-12 text-luxury-charcoal/60 space-y-2"><i class="fa-regular fa-heart text-3xl text-luxury-roseGold"></i><p class="text-sm">Tu estante de deseos está vacío.</p></div>`;
+                return;
+            }
+            container.innerHTML = wishlist.map(item => `
+                <div class="flex items-center justify-between py-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-14 bg-luxury-roseGold/20 rounded flex items-center justify-center font-serif text-xs font-bold">N</div>
+                        <div>
+                            <h4 class="font-serif font-bold text-sm">${item.name}</h4>
+                            <span class="text-xs text-luxury-gold font-bold">$${item.price.toFixed(2)} MXN</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="moveWishlistToCart(${item.id})" class="p-2 text-xs bg-luxury-dark text-luxury-cream rounded hover:bg-luxury-gold hover:text-luxury-dark transition-colors" title="Añadir al Carrito"><i class="fa-solid fa-bag-shopping"></i></button>
+                        <button onclick="toggleWishlist(${item.id})" class="p-2 text-xs text-luxury-roseGold hover:text-luxury-dark"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addAllWishlistToCart() {
+            wishlist.forEach(item => {
+                if (!cart.some(c => c.id === item.id)) {
+                    cart.push({...item, qty: 1});
+                }
+            });
+            wishlist = [];
+            updateBadges();
+            toggleWishlistDrawer();
+            toggleCartDrawer();
+        }
+
+        function moveWishlistToCart(id) {
+            const item = wishlist.find(w => w.id === id);
+            if(item) {
+                addToCart(id);
+                toggleWishlist(id);
+            }
+        }
+
+        // Cart Drawer Functions
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            renderCartItems();
+        }
+
+        function addToCart(id) {
+            const product = perfumesCatalog.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            updateBadges();
+            toggleCartDrawer();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateBadges();
+            renderCartItems();
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(c => c.id === id);
+            if(item) {
+                item.qty += delta;
+                if(item.qty <= 0) {
+                    removeFromCart(id);
+                } else {
+                    renderCartItems();
+                }
+            }
+            updateBadges();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total-price');
+
+            if (cart.length === 0) {
+                container.innerHTML = `<div class="text-center py-12 text-luxury-charcoal/60 space-y-2"><i class="fa-bag-shopping fa-regular text-3xl text-luxury-gold"></i><p class="text-sm">Tu bolsa de compras está vacía.</p></div>`;
+                totalEl.textContent = "$0.00 MXN";
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                total += item.price * item.qty;
+                return `
+                    <div class="flex items-center justify-between py-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-14 bg-luxury-lightGold/40 rounded flex items-center justify-center font-serif text-xs font-bold">N</div>
+                            <div>
+                                <h4 class="font-serif font-bold text-sm">${item.name}</h4>
+                                <span class="text-xs text-luxury-gold font-bold">$${item.price.toFixed(2)} MXN</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="flex items-center border border-luxury-roseGold/40 rounded">
+                                <button onclick="changeQty(${item.id}, -1)" class="px-2 py-1 text-xs hover:bg-luxury-roseGold/20">-</button>
+                                <span class="px-2 text-xs font-semibold">${item.qty}</span>
+                                <button onclick="changeQty(${item.id}, 1)" class="px-2 py-1 text-xs hover:bg-luxury-roseGold/20">+</button>
+                            </div>
+                            <button onclick="removeFromCart(${item.id})" class="text-luxury-roseGold hover:text-luxury-dark text-xs"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            totalEl.textContent = `$${total.toFixed(2)} MXN`;
+        }
+
+        function updateBadges() {
+            document.getElementById('wishlist-badge').textContent = wishlist.length;
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-badge').textContent = totalQty;
+        }
+
+        function checkoutCart() {
+            if(cart.length === 0) {
+                alert("Tu bolsa está vacía.");
+                return;
+            }
+            alert("¡Redirigiendo a pasarela de pago segura de NOESIS Perfumería! Gracias por tu preferencia.");
+            cart = [];
+            updateBadges();
+            toggleCartDrawer();
+            switchView('home');
+        }
+
+        // Contact Form Handler
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            alert("¡Mensaje enviado con éxito! Un asesor de NOESIS se pondrá en contacto contigo a la brevedad.");
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
